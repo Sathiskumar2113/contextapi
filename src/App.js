@@ -1,13 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const userName=createContext();
 
 function D()
 {
-  const {name} = useContext(userName);
-  return(
+  const {name,setName} = useContext(userName);
+
+ useEffect(()=>{
+  setTimeout(()=>{
+    setName('suji');
+  }, 1000);
+ })
+  
+
+ return(
     <div> 
       <h1>hello {name} !haha</h1>
 
@@ -39,7 +47,7 @@ function App() {
   const[name,setName]=useState("sathis");
   return (
     <div>
-      <userName.Provider value={{name}}>
+      <userName.Provider value={{name,setName}}>
       <B></B>
       </userName.Provider>
    
