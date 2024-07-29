@@ -1,23 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
+import { createContext, useContext, useState } from 'react';
+
+const userName=createContext();
+
+function D()
+{
+  const {name} = useContext(userName);
+  return(
+    <div> 
+      <h1>hello {name} !haha</h1>
+
+    </div>
+  )
+}
+
+
+function C()
+{
+  return(
+    <div>
+      <D></D>
+    </div>
+  )
+}
+
+function B()
+{
+  return(
+    <div>
+      <C></C>
+
+    </div>
+  )
+}
 
 function App() {
+  const[name,setName]=useState("sathis");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <userName.Provider value={{name}}>
+      <B></B>
+      </userName.Provider>
+   
+      
+      
     </div>
   );
 }
